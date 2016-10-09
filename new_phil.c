@@ -38,6 +38,6 @@ void create_phils(pthread_t *phil, int *phil_id) {
 
 void f_thread (void *v) {
   int t_id = *(int *) v;
-  printf("Filósofo %d\n", t_id);
+  printf("Filósofo %d sentou-se a mesa.\n", t_id);
   return NULL;
 }
