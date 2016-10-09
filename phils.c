@@ -1,4 +1,6 @@
-/* din_philo.c */    
+/* Victor Akira
+   Felipe Viglioni
+*/    
 #include <pthread.h>
 #include <stdio.h>
 #include <unistd.h>
