@@ -18,30 +18,34 @@
 
 // variáveis globais
 
-int ref_comidas[FIL] = {0,0,0,0,0};  // contador de refeiçoes
-volatile int taca[2]; 
-volatile int temTaca[2] = {-1,-1};
-volatile int temGarfo[5] = {-1,-1,-1,-1,-1};
-volatile int terceiro = 0;
-volatile int ref = 0;
+int ref_comidas[FIL] = {0,0,0,0,0};               // contador de refeiçoes
+volatile int taca[2];                            // define quem começa com as taças
+volatile int temTaca[2] = {-1,-1};              // armazena quem tem as taças em dado momento    
+volatile int temGarfo[5] = {-1,-1,-1,-1,-1};   // idem sobre os garfos
+volatile int terceiro = 0;                    // verifica que um 3o filosofo pegue um garfo  
+volatile int ref = 0;                        // conta as refeiçoes feitas  
+
+
 // cabeçalhos
-void imprime();
-void create_phils(pthread_t *phil, int *phil_id);
-void f_thread (void *v);
-void pensa(int phil_id);
-void EsperaTaca(int phil_id);
-void EsperaGarfo(int phil_id);
-void PegaGarfo(int phil_id);
-void PegaOutroGarfo( int phil_id);
-void PegaUnicoGarfo(int phil_id);
-void Come(int phil_id);
-void SoltaTalher(int phil_id); 
+void imprime();                                          // imprime o numero de refeiçoes feitas
+void create_phils(pthread_t *phil, int *phil_id);       // cria as threads
+void f_thread (void *v);                               // 
+void pensa(int phil_id);                              // filósofos pensam  
+void EsperaTaca(int phil_id);                        // filosófos se degladeiam pela taça na mesa
+void EsperaGarfo(int phil_id);                      // quem conseguir taça, briga pelos garfos
+void PegaGarfo(int phil_id);                       // quem consegue, pega o garfo
+void PegaOutroGarfo( int phil_id);                // pega o outro garfo na mesa 
+void PegaUnicoGarfo(int phil_id);                // os fils sem copo se degladeiam pelo prox garfo
+void Come(int phil_id);                         // quem pode come, quem nao pode fica na fome
+void SoltaTalher(int phil_id);                 // os que comeram soltam o talher, o ciclo recomeça
+                                              // com a vantagem de quem tiver pegado o unico garfo
+                                             // na rodada anterior 
 
 // Main
 
 int main(){
 
-  pthread_t phil[FIL];
+  pthread_t phil[FIL];                         
   int r, i, phil_id[FIL];
 
   r = random()%5;
@@ -213,6 +217,7 @@ void SoltaTalher (int phil_id) {
 
 void imprime() {
   int i;
+  puts("");
   for (i=0; i<5;i++)
     printf("filósofo %d comeu %d vezes\n",i,ref_comidas[i]);
 }
