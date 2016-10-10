@@ -5,6 +5,7 @@
 #include <errno.h>
 #include <assert.h>
 #include <semaphore.h>
+#include <string.h>
 
 
 // definiçoes
@@ -68,6 +69,7 @@ void f_thread (void *v) {
     PegaOutroGarfo(t_id);
     Come(t_id);
     SoltaTalher(t_id);
+	Mesa();
   }
   return NULL;
 }
@@ -209,4 +211,17 @@ void imprime() {
   int i;
   for (i=0; i<5;i++)
     printf("filósofo %d comeu %d vezes\n",i,ref_comidas[i]);
+}
+
+void Mesa(){
+	char phil0[100];
+	char phil1[100];
+	char phil2[100];
+	char phil3[100];
+	char phil4[100];
+
+	char eating[10] = '( ͡° ͜ʖ ͡°)';
+	char taking[10] = '(ಠ_ಠ)';
+
+	
 }
