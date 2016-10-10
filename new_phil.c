@@ -61,6 +61,8 @@ void f_thread (void *v) {
   int t_id = *(int *) v;
   printf("Filósofo %d sentou-se a mesa. ʘ‿ʘ \n", t_id);
 
+  printf("0: ʘ‿ʘ  \t\t1: ʘ‿ʘ  \t\t 2: ʘ‿ʘ  \t\t3: ʘ‿ʘ  \t\t4: ʘ‿ʘ  \n");
+
   while (ref > 0) {
     pensa(t_id);
     EsperaTaca(t_id);
@@ -69,7 +71,6 @@ void f_thread (void *v) {
     PegaOutroGarfo(t_id);
     Come(t_id);
     SoltaTalher(t_id);
-	Mesa();
   }
   return NULL;
 }
@@ -94,11 +95,49 @@ void EsperaTaca(int phil_id) {
 
     if ( phil_id == taca[0]%5) {
       printf("filosofo %d pegou a taça ಠ_ಠ \n", phil_id);
+
+	  switch (phil_id){
+	  case 0:
+		  printf("0: ಠ_ಠv \t\t1: ಠ_ಠ  \t\t2: ಠ_ಠ  \t\t3: ಠ_ಠ  \t\t4: ಠ_ಠ  \n");
+		  break;
+	  case 1:
+		  printf("0: ಠ_ಠ  \t\t1: ಠ_ಠv \t\t2: ಠ_ಠ  \t\t3: ಠ_ಠ  \t\t4: ಠ_ಠ  \n");
+		  break;
+	  case 2:
+		  printf("0: ಠ_ಠ  \t\t1: ಠ_ಠ  \t\t2: ಠ_ಠ v\t\t3: ಠ_ಠ  \t\t4: ಠ_ಠ  \n");
+		  break;
+	  case 3:
+		  printf("0: ಠ_ಠ  \t\t1: ಠ_ಠ  \t\t2: ಠ_ಠ  \t\t3: ಠ_ಠv \t\t4: ಠ_ಠ  \n");
+		  break;
+	  case 4:
+		  printf("0: ಠ_ಠ  \t\t1: ಠ_ಠ  \t\t2: ಠ_ಠ  \t\t3: ಠ_ಠ  \t\t4: ಠ_ಠv \n");
+		  break;
+	  }
+
       temTaca[0] = phil_id;
       break;
     }
     else if ( phil_id == taca[1]%5) {
       printf("filosofo %d pegou a taça ಠ_ಠ \n", phil_id);
+
+	  switch (phil_id){
+	  case 0:
+		  printf("0: ಠ_ಠv \t\t1: ಠ_ಠ  \t\t2: ಠ_ಠ  \t\t3: ಠ_ಠ  \t\t4: ಠ_ಠ  \n");
+		  break;
+	  case 1:
+		  printf("0: ಠ_ಠ  \t\t1: ಠ_ಠv \t\t2: ಠ_ಠ  \t\t3: ಠ_ಠ  \t\t4: ಠ_ಠ  \n");
+		  break;
+	  case 2:
+		  printf("0: ಠ_ಠ  \t\t1: ಠ_ಠ  \t\t2: ಠ_ಠ v\t\t3: ಠ_ಠ  \t\t4: ಠ_ಠ  \n");
+		  break;
+	  case 3:
+		  printf("0: ಠ_ಠ  \t\t1: ಠ_ಠ  \t\t2: ಠ_ಠ  \t\t3: ಠ_ಠv \t\t4: ಠ_ಠ  \n");
+		  break;
+	  case 4:
+		  printf("0: ಠ_ಠ  \t\t1: ಠ_ಠ  \t\t2: ಠ_ಠ  \t\t3: ಠ_ಠ  \t\t4: ಠ_ಠv \n");
+		  break;
+	  }
+
       temTaca[1] = phil_id;
       break;
     }
