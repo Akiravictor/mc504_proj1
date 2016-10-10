@@ -1,0 +1,6 @@
+c:\users\akira\documents\visual studio 2013\Projects\MC504\proj1\proj1\bin\Debug\proj1.exe.config
+c:\users\akira\documents\visual studio 2013\Projects\MC504\proj1\proj1\bin\Debug\proj1.exe
+c:\users\akira\documents\visual studio 2013\Projects\MC504\proj1\proj1\bin\Debug\proj1.pdb
+c:\users\akira\documents\visual studio 2013\Projects\MC504\proj1\proj1\obj\Debug\proj1.csprojResolveAssemblyReference.cache
+c:\users\akira\documents\visual studio 2013\Projects\MC504\proj1\proj1\obj\Debug\proj1.exe
+c:\users\akira\documents\visual studio 2013\Projects\MC504\proj1\proj1\obj\Debug\proj1.pdb
