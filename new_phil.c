@@ -1,3 +1,6 @@
+/* Felipe Viglioni 106665
+   Victor Akira    106976 */
+
 #include <pthread.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -9,18 +12,18 @@
 
 // definiçoes
 
-#define REF 25 // número de refeiçoes servidas
+#define REF 50 // número de refeiçoes servidas
 #define FIL 5 // número de filósofos
 
 
 // variáveis globais
 
-int ref_comidas[FIL] = {0,0,0,0,0};
-volatile int taca[2] = {0,1};
+int ref_comidas[FIL] = {0,0,0,0,0};  // contador de refeiçoes
+volatile int taca[2]; 
 volatile int temTaca[2] = {-1,-1};
 volatile int temGarfo[5] = {-1,-1,-1,-1,-1};
 volatile int terceiro = 0;
-volatile int ref = REF;
+volatile int ref = 0;
 // cabeçalhos
 void imprime();
 void create_phils(pthread_t *phil, int *phil_id);
@@ -50,7 +53,6 @@ int main(){
   for (i = 0; i < FIL; i++) 
     pthread_join(phil[i], NULL); 
 
-  imprime();
   return 0;
 }
 
@@ -60,7 +62,7 @@ void f_thread (void *v) {
   int t_id = *(int *) v;
   printf("Filósofo %d sentou-se a mesa. ʘ‿ʘ \n", t_id);
 
-  while (ref > 0) {
+  while (1) {
     pensa(t_id);
     EsperaTaca(t_id);
     EsperaGarfo(t_id);
@@ -177,7 +179,11 @@ void Come(int phil_id) {
   if (counter == 2) {
     printf("filósofo %d comeu ( ͡° ͜ʖ ͡°) \n", phil_id);
     ref_comidas[phil_id]++;
-    ref--;
+    ref++;
+    if (ref == REF) {
+      imprime();
+      exit(0);
+    }
   }
 }
 
