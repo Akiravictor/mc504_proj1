@@ -1,4 +1,6 @@
-/* din_philo.c */    
+/* Victor Akira
+   Felipe Viglioni
+*/    
 #include <pthread.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -24,14 +26,8 @@ pthread_mutex_t food_lock;
 int sleep_seconds = 0;
 
 
-int
-main (int argn,
-      char **argv)
-{
+int main (){
     int i;
-
-    if (argn == 2)
-        sleep_seconds = atoi (argv[1]);
 
     pthread_mutex_init (&food_lock, NULL);
     for (i = 0; i < PHILOS; i++)
@@ -43,9 +39,7 @@ main (int argn,
     return 0;
 }
 
-void *
-philosopher (void *num)
-{
+void *philosopher (void *num){
     int id;
     int i, left_chopstick, right_chopstick, f;
 
@@ -79,9 +73,7 @@ philosopher (void *num)
     return (NULL);
 }
 
-int
-food_on_table ()
-{
+int food_on_table (){
     static int food = FOOD;
     int myfood;
 
@@ -94,19 +86,15 @@ food_on_table ()
     return myfood;
 }
 
-void
-grab_chopstick (int phil,
+void grab_chopstick (int phil,
                 int c,
-                char *hand)
-{
+                char *hand) {
     pthread_mutex_lock (&chopstick[c]);
     printf ("Philosopher %d: got %s chopstick %d\n", phil, hand, c);
 }
 
-void
-down_chopsticks (int c1,
-                 int c2)
-{
+void down_chopsticks (int c1,
+                 int c2) {
     pthread_mutex_unlock (&chopstick[c1]);
     pthread_mutex_unlock (&chopstick[c2]);
 }
