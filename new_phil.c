@@ -34,18 +34,27 @@ void PegaUnicoGarfo(int phil_id);
 void Come(int phil_id);
 void SoltaTalher(int phil_id); 
 
+typedef struct philosopher{
+	int id,
+	int garfo1,
+	int garfo2,
+	int taca,
+	int status
+} phil;
+
 // Main
 
 int main(){
 
   pthread_t phil[FIL];
   int r, i, phil_id[FIL];
+  phil phil_list[FIL];
 
   r = random()%5;
   taca[0] = r;
   taca[1] = (r+1)%5;
   
-  create_phils(phil,phil_id);
+  create_phils(phil,phil_id,phil_list);
   
   for (i = 0; i < FIL; i++) 
     pthread_join(phil[i], NULL); 
@@ -74,16 +83,22 @@ void f_thread (void *v) {
 
 // outras funçoes
 
-void create_phils(pthread_t *phil, int *phil_id) {
+void create_phils(pthread_t *phil, int *phil_id, phil *phil_list) {
   int i;
   for (i = 0; i < FIL; i++) {
     phil_id[i] = i;
+	phil_list[i].id = i;
+	phil_list[i].garfo1 = 0;
+	phil_list[i].garfo2 = 0;
+	phil_list[i].taca = 0;
+	phil_list[i].status = 0;
     pthread_create(&phil[i], NULL, f_thread, (void*) &phil_id[i]);
   }
 }
 
 
 void pensa(int phil_id) {
+	phil_list[phil_id].status = 0;
   sleep(1);
 }
 
@@ -91,11 +106,13 @@ void EsperaTaca(int phil_id) {
   while (1) {
 
     if ( phil_id == taca[0]%5) {
+	  phil_list[phil_id].taca = 1;
       printf("filosofo %d pegou a taça ಠ_ಠ \n", phil_id);
       temTaca[0] = phil_id;
       break;
     }
     else if ( phil_id == taca[1]%5) {
+		phil_list[phil_id].taca = 1;
       printf("filosofo %d pegou a taça ಠ_ಠ \n", phil_id);
       temTaca[1] = phil_id;
       break;
